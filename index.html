@@ -1,24 +1,59 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hair Try On</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HairTry — чоловічі зачіски</title>
   <link rel="manifest" href="manifest.json">
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js');
-    }
-  </script>
-  <link rel="stylesheet" href="style.css">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icon.png"/>
+  <script>if('serviceWorker'in navigator){navigator.serviceWorker.register('./sw.js');}</script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Hair Try On</h1>
-  <p>Завантаж своє фото і вибери зачіску.</p>
-  <input type="file" id="upload" accept="image/*"><br><br>
-  <canvas id="canvas"></canvas><br>
-  <button onclick="applyHair()">Накласти зачіску</button>
+  <header class="bar">
+    <div class="title">HairTry</div>
+    <div class="subtitle">Приміряй чоловічі стрижки на своє фото</div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <label class="btn file">
+        <input type="file" id="photo" accept="image/*">
+        Обрати фото
+      </label>
+
+      <div class="thumbs" id="thumbs">
+        <img src="hairstyles/fade.png" data-file="fade.png" alt="Fade">
+        <img src="hairstyles/undercut.png" data-file="undercut.png" alt="Undercut">
+        <img src="hairstyles/quiff.png" data-file="quiff.png" alt="Quiff">
+        <img src="hairstyles/buzz.png" data-file="buzz.png" alt="Buzz">
+        <img src="hairstyles/curly.png" data-file="curly.png" alt="Curly">
+      </div>
+
+      <div class="controls">
+        <label>Масштаб <input type="range" id="scale" min="0.3" max="3" step="0.01" value="1"></label>
+        <label>Поворот <input type="range" id="rotation" min="-180" max="180" step="1" value="0"></label>
+        <label>Прозорість <input type="range" id="opacity" min="0.2" max="1" step="0.01" value="0.96"></label>
+      </div>
+
+      <div class="row">
+        <button id="flip" class="btn">↔ Віддзеркалити</button>
+        <button id="toggleLayer" class="btn ghost">Під обличчя</button>
+        <button id="eraser" class="btn ghost">Режим ластика</button>
+        <button id="undo" class="btn ghost">Відмінити</button>
+        <button id="reset" class="btn ghost">Скинути</button>
+        <button id="save" class="btn">Зберегти PNG</button>
+      </div>
+    </section>
+
+    <section class="stage">
+      <canvas id="canvas"></canvas>
+    </section>
+  </main>
+
+  <footer class="foot">Порада: увімкни «Під обличчя» або акуратно підчисти ластиком по лінії чола.</footer>
 
   <script src="script.js"></script>
 </body>
