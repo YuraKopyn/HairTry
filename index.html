@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hair Try On</title>
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Hair Try On</h1>
+  <p>Завантаж своє фото і вибери зачіску.</p>
+  <input type="file" id="upload" accept="image/*"><br><br>
+  <canvas id="canvas"></canvas><br>
+  <button onclick="applyHair()">Накласти зачіску</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
